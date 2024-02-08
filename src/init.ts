@@ -4,19 +4,30 @@ import { PackageJson } from "./package";
 import enquirer from 'enquirer';
 const { prompt } = enquirer;
 
-export async function init(pkg: PackageJson, args: string[]) {
-    const force = args.includes('--force');
-    if (force || !pkg.data.ts_dual_mod) {
-        initConfig(pkg);
-    }
+export async function init(pkg: PackageJson, _args: string[]) {
+    await initConfig(pkg);
 
-    if (force || !fs.existsSync(path.join(pkg.baseDir, 'tsconfig.json'))) {
-        // generate a tsconfig.json
-        console.log('Generating tsconfig.json file.');
-        const fileURL = new URL("../templates/tsconfig.json", import.meta.url);
-        const content = fs.readFileSync(fileURL, "utf8");
-        fs.writeFileSync(path.join(pkg.baseDir, 'tsconfig.json'), content);
+    if (fs.existsSync(path.join(pkg.baseDir, 'tsconfig.json'))) {
+        const answers = await prompt({
+            type: 'confirm',
+            name: 'force',
+            message: 'tsconfig.json already exists. Do you want to overwrite it?',
+            initial: false
+        });
+        if ((answers as any).force) {
+            generateTsConfig(pkg);
+        }
+    } else {
+        generateTsConfig(pkg);
     }
+}
+
+function generateTsConfig(pkg: PackageJson) {
+    // generate a tsconfig.json
+    console.log('Generating tsconfig.json file.');
+    const fileURL = new URL("../templates/tsconfig.json", import.meta.url);
+    const content = fs.readFileSync(fileURL, "utf8");
+    fs.writeFileSync(path.join(pkg.baseDir, 'tsconfig.json'), content);
 }
 
 export async function initConfig(pkg: PackageJson) {

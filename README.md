@@ -4,9 +4,18 @@ Easily build ts projects as dual packaged modules (cjs+esm)
 The tool is designed to work on ESM packages (type: "module") and will build both ESM and commonjs versions of your code using typescript. 
 The package.json exports is automatically updated to match your build.
 
-You must create a `./tsconfig.json` file in the project root, which will be used by the tool to as the base tsc configuration.  If you don't have one just run `npx tsmod init` and it will create one for you. 
+A dual module project is usually storing the source files in a directoy like `./src`` and the generated files in a directory like `./dist`. The minimal layout of a projet is:
 
-The first time you build you will be asked for the oputput directory name where the generated files will be stored. The default is `dist`.
+```
+./dist
+./src
+package.json
+tsconfig.json
+```
+
+The first time the build is done (or if you run `npx tsmod init`) you will be asked for the oputput directory name where the generated files will be stored.
+
+You must create a `./tsconfig.json` file in the project root, which will be used by the tool to as the base tsc configuration.  If you don't have one just run `npx tsmod init` and it will create one for you. 
 
 To start a build run: `npx tsmod build`. You can pass any additional tsc options you need.
 
