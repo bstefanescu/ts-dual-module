@@ -99,7 +99,7 @@ export class PackageJson {
             }
             for (const [key, val] of entries) {
                 const [pathName, ext] = computeExportPath(val);
-                pkgExports[key] = {
+                pkgExports['./' + key] = {
                     "types": `./${outDir}/types/${pathName}.d.ts`,
                     "default": `./${outDir}/esm/${pathName}${ext}`,
                     "import": `./${outDir}/esm/${pathName}${ext}`,
