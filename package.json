@@ -1,6 +1,6 @@
 {
   "name": "ts-dual-module",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Easily build dual module packages (esm + cjs) using typescript",
   "type": "module",
   "bin": {

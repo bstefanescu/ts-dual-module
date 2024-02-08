@@ -30,9 +30,10 @@ export class PackageJson {
     }
 
     set srcDir(srcDir: string) {
-        this.data.ts_dual_module = {
-            srcDir
+        if (!this.data.ts_dual_module) {
+            this.data.ts_dual_module = {};
         }
+        this.data.ts_dual_module.srcDir = srcDir;
         this.dirty = true;
     }
 
@@ -41,9 +42,10 @@ export class PackageJson {
     }
 
     set outDir(outDir: string) {
-        this.data.ts_dual_module = {
-            outDir
+        if (!this.data.ts_dual_module) {
+            this.data.ts_dual_module = {};
         }
+        this.data.ts_dual_module.outDir = outDir;
         this.dirty = true;
     }
 
@@ -52,9 +54,10 @@ export class PackageJson {
     }
 
     set exports(exports: Record<string, string>) {
-        this.data.ts_dual_module = {
-            exports
+        if (!this.data.ts_dual_module) {
+            this.data.ts_dual_module = {};
         }
+        this.data.ts_dual_module.exports = exports;
         this.dirty = true;
     }
 
