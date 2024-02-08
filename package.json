@@ -1,10 +1,10 @@
 {
-  "name": "ts-dual-mod",
+  "name": "ts-dual-module",
   "version": "0.3.0",
   "description": "Easily build dual module packages (esm + cjs) using typescript",
   "type": "module",
   "bin": {
-    "tsmod": "./bin/tsmod.mjs"
+    "tsmod": "bin/tsmod.mjs"
   },
   "files": [
     "lib",
@@ -17,7 +17,15 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
   },
-  "author": "Bogdan Stefanescu <stefanescu.bogdan@gmail.com>",
+  "homepage": "https://github.com/bstefanescu/ts-dual-module",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:bstefanescu/ts-dual-module.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bstefanescu/ts-dual-module/issues"
+  },
+  "author": "Bogdan Stefanescu",
   "license": "MIT",
   "exports": {
     "types": "./dist/types/index.d.ts",
