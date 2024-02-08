@@ -1,6 +1,6 @@
 {
   "name": "ts-dual-module",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Easily build dual module packages (esm + cjs) using typescript",
   "type": "module",
   "bin": {
@@ -17,6 +17,15 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
   },
+  "keywords": [
+    "typescript",
+    "build",
+    "exports",
+    "tsc",
+    "esm",
+    "cjs",
+    "dual-module"
+  ],
   "homepage": "https://github.com/bstefanescu/ts-dual-module",
   "repository": {
     "type": "git",
