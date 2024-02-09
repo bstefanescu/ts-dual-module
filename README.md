@@ -17,6 +17,8 @@ The first time the build is done (or if you run `npx tsmod init`) you will be as
 
 You must create a `./tsconfig.json` file in the project root, which will be used by the tool to as the base tsc configuration.  If you don't have one just run `npx tsmod init` and it will create one for you. 
 
+If you need to customize the `tsconfig.json` file differently for esm or cjs you can create a specific files for each build: `tsconfig.esm.json` and `tsconfig.cjs.esm` hich will take precendence over `tsconfig.json`.
+
 To start a build run: `npx tsmod build`. You can pass any additional tsc options you need.
 
 ### Sub-paths exports

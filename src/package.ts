@@ -69,6 +69,22 @@ export class PackageJson {
         return path.join(this.baseDir, this.outDir || OUT_DIR);
     }
 
+    get defaultTsConfig() {
+        return path.join(this.baseDir, 'tsconfig.json');
+    }
+
+    resolveTsConfig(type: 'cjs' | 'esm') {
+        if (type === 'esm') {
+            const esmConfig = path.join(this.baseDir, 'tsconfig.esm.json');
+            return fs.existsSync(esmConfig) ? esmConfig : this.defaultTsConfig;
+        } else if (type === 'cjs') {
+            const cjsConfig = path.join(this.baseDir, 'tsconfig.cjs.json');
+            return fs.existsSync(cjsConfig) ? cjsConfig : this.defaultTsConfig;
+        } else {
+            return this.defaultTsConfig;
+        }
+    }
+
     generateExports() {
         const outDir = this.outDir || OUT_DIR;
         const exportMap = this.exports || {};

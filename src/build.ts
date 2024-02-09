@@ -49,8 +49,8 @@ function esm_buildParams(outDir: string, genTypes: boolean, params: Record<strin
         params['--declarationDir'] = `${outDir}/types`;
         params['--declarationMap'] = "true";
     } else {
+        params['--declarationMap'] = "false";
         delete params['--declarationDir'];
-        delete params['--declarationMap'];
     }
     params['--outDir'] = `${outDir}/esm`;
     if (!params['--module']) {
@@ -68,8 +68,8 @@ function cjs_buildParams(outDir: string, genTypes: boolean, params: Record<strin
         params['--declarationDir'] = `${outDir}/types`;
         params['--declarationMap'] = "true";
     } else {
+        params['--declarationMap'] = "false";
         delete params['--declarationDir'];
-        delete params['--declarationMap'];
     }
     params['--outDir'] = `${outDir}/cjs`;
     params['--module'] = 'commonjs';
@@ -99,10 +99,13 @@ export async function build(pkg: PackageJson, args: string[]) {
         outDir = await initConfig(pkg);
     }
     outDir = path.join(projectDir, outDir);
+
     if (isEsm) {
+        params['--project'] = pkg.resolveTsConfig('esm');
         _build(esm_buildParams(outDir, genEsmTypes, params));
     }
     if (isCjs) {
+        params['--project'] = pkg.resolveTsConfig('cjs');
         _build(cjs_buildParams(outDir, genCjsTypes, params));
         fs.writeFileSync(`${outDir}/cjs/package.json`, JSON.stringify({ type: 'commonjs' }, null, 2));
     }
