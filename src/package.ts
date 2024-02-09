@@ -132,10 +132,9 @@ export class PackageJson {
 
     generateTypings() {
         const outDir = this.outDir || OUT_DIR;
-        if (!this.data.types && !this.data.typings) {
-            this.data.types = `./${outDir}/types/index.d.ts`;
-            this.dirty = true;
-        }
+        delete this.data.typings;
+        this.data.types = `./${outDir}/types/index.d.ts`;
+        this.dirty = true;
     }
 
     save(force = false) {
