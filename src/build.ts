@@ -50,7 +50,7 @@ function esm_buildParams(outDir: string, genTypes: boolean, params: Record<strin
         params['--declarationMap'] = "true";
     } else {
         params['--declarationMap'] = "false";
-        delete params['--declarationDir'];
+        params['--declarationDir'] = "null";
     }
     params['--outDir'] = `${outDir}/esm`;
     if (!params['--module']) {
@@ -69,7 +69,7 @@ function cjs_buildParams(outDir: string, genTypes: boolean, params: Record<strin
         params['--declarationMap'] = "true";
     } else {
         params['--declarationMap'] = "false";
-        delete params['--declarationDir'];
+        params['--declarationDir'] = "null";
     }
     params['--outDir'] = `${outDir}/cjs`;
     params['--module'] = 'commonjs';
