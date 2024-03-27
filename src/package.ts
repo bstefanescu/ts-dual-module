@@ -90,7 +90,6 @@ export class PackageJson {
         const exportMap = this.exports || {};
         const root = {
             "types": `./${outDir}/types/index.d.ts`,
-            "default": `./${outDir}/esm/index.js`,
             "import": `./${outDir}/esm/index.js`,
             "require": `./${outDir}/cjs/index.js`,
         }
@@ -117,7 +116,6 @@ export class PackageJson {
                 const [pathName, ext] = computeExportPath(val);
                 pkgExports['./' + key] = {
                     "types": `./${outDir}/types/${pathName}.d.ts`,
-                    "default": `./${outDir}/esm/${pathName}${ext}`,
                     "import": `./${outDir}/esm/${pathName}${ext}`,
                     "require": `./${outDir}/cjs/${pathName}${ext}`,
                 };
